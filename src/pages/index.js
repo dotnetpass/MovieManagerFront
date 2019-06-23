@@ -232,5 +232,4 @@ class Movie extends PureComponent {
 
 export default withRouter(connect(state => ({
     index: state.idx,
-
 }))(Movie));

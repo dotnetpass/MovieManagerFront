@@ -18,11 +18,11 @@ export function _onCreate() {
   (runtimeDva.plugins || []).forEach(plugin => {
     app.use(plugin);
   });
-  app.use(require('/Users/DuStark/git/moviemanager/node_modules/dva-immer/lib/index.js').default());
-  app.model({ namespace: 'forum', ...(require('/Users/DuStark/git/moviemanager/src/models/forum.js').default) });
-app.model({ namespace: 'idx', ...(require('/Users/DuStark/git/moviemanager/src/models/idx.js').default) });
-app.model({ namespace: 'movie', ...(require('/Users/DuStark/git/moviemanager/src/models/movie.js').default) });
-app.model({ namespace: 'user', ...(require('/Users/DuStark/git/moviemanager/src/models/user.js').default) });
+  app.use(require('/Users/DuStark/git/MovieManagerFront/node_modules/dva-immer/lib/index.js').default());
+  app.model({ namespace: 'forum', ...(require('/Users/DuStark/git/MovieManagerFront/src/models/forum.js').default) });
+app.model({ namespace: 'idx', ...(require('/Users/DuStark/git/MovieManagerFront/src/models/idx.js').default) });
+app.model({ namespace: 'movie', ...(require('/Users/DuStark/git/MovieManagerFront/src/models/movie.js').default) });
+app.model({ namespace: 'user', ...(require('/Users/DuStark/git/MovieManagerFront/src/models/user.js').default) });
 }
 
 export function getApp() {

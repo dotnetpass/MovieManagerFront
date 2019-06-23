@@ -83,12 +83,12 @@ const routes = [
         "component": require('../register.js').default
       },
       {
-        "component": () => React.createElement(require('/Users/DuStark/git/moviemanager/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
+        "component": () => React.createElement(require('/Users/DuStark/git/MovieManagerFront/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
       }
     ]
   },
   {
-    "component": () => React.createElement(require('/Users/DuStark/git/moviemanager/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
+    "component": () => React.createElement(require('/Users/DuStark/git/MovieManagerFront/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
   }
 ];
 window.g_routes = routes;
