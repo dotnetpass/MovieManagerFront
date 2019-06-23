@@ -173,7 +173,7 @@ class Movie extends PureComponent {
                             {sortByOptions[movie.query.sort_by || 'score']} <Icon type="down"/>
                         </a>
                     </Dropdown></div>
-                <MovieList data={movie.data} loading={movie.loading} loadMore={loadMore} like={this.handleLike}/>
+                <MovieList data={movie.data} loading={movie.loading} loadMore={loadMore}/>
             </div>
         </div>
     }

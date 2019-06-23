@@ -63,7 +63,7 @@ class Movie extends PureComponent {
                     <Search size="large" placeholder="输入讨论组名" enterButton
                             onChange={(e) => this.handleEditInput('query', e.target.value)}
                             onSearch={this.handleSearch}
-                            value={this.state.query !== undefined ? this.state.query : (forum.data.name || '')}/>
+                            value={this.state.query !== undefined ? this.state.query : (this.props.location.query.query || '')}/>
                 </div>
             </div>
             <div className={styles.content}>

@@ -26,7 +26,7 @@ const MovieList = ({data, loading, loadMore, like}) => {
                     <div className={styles.score}>
                         {item.score || '0.0'}
                     </div>
-                    <Icon type="heart" className={styles.like} onClick={(e)=>handleLike(e, item.id)}/>
+                    {like?<Icon type="heart" className={styles.like} onClick={(e)=>handleLike(e, item.id)}/>:null}
                     <div className={styles.tags}>
                         {(item.category || '').split(',').map(e => <span key={e}
                                                                          className={styles.tag}>{e}</span>)}

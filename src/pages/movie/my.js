@@ -24,7 +24,9 @@ class Movie extends PureComponent {
         this.props.dispatch({
             type: 'movie/like',
             payload: {
-                id
+                id,
+                like: true,
+                refreshLike: true
             }
         });
     };

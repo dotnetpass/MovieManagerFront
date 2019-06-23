@@ -15,80 +15,114 @@ const routes = [
       {
         "path": "/404",
         "exact": true,
-        "component": require('../404.js').default
+        "component": require('../404.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/exception/403",
         "exact": true,
-        "component": require('../exception/403.js').default
+        "component": require('../exception/403.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/exception/404",
         "exact": true,
-        "component": require('../exception/404.js').default
+        "component": require('../exception/404.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/exception/500",
         "exact": true,
-        "component": require('../exception/500.js').default
+        "component": require('../exception/500.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/forum/list",
         "exact": true,
-        "component": require('../forum/list.js').default
+        "component": require('../forum/list.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/forum/my",
         "exact": true,
-        "component": require('../forum/my.js').default
+        "component": require('../forum/my.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/forum/new",
         "exact": true,
-        "component": require('../forum/new.js').default
+        "component": require('../forum/new.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/forum/:id",
         "exact": true,
-        "component": require('../forum/$id.js').default
+        "component": require('../forum/$id.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/",
         "exact": true,
-        "component": require('../index.js').default
+        "component": require('../index.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/login",
         "exact": true,
-        "component": require('../login.js').default
+        "component": require('../login.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/movie/list",
         "exact": true,
-        "component": require('../movie/list.js').default
+        "component": require('../movie/list.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/movie/my",
         "exact": true,
-        "component": require('../movie/my.js').default
+        "component": require('../movie/my.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/movie/:id",
         "exact": true,
-        "component": require('../movie/$id.js').default
+        "component": require('../movie/$id.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
         "path": "/register",
         "exact": true,
-        "component": require('../register.js').default
+        "component": require('../register.js').default,
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       },
       {
-        "component": () => React.createElement(require('/Users/DuStark/git/MovieManagerFront/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
+        "component": () => React.createElement(require('/Users/DuStark/git/MovieManagerFront/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+        "_title": "moviemanager - Find your interest!",
+        "_title_default": "moviemanager - Find your interest!"
       }
-    ]
+    ],
+    "_title": "moviemanager - Find your interest!",
+    "_title_default": "moviemanager - Find your interest!"
   },
   {
-    "component": () => React.createElement(require('/Users/DuStark/git/MovieManagerFront/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
+    "component": () => React.createElement(require('/Users/DuStark/git/MovieManagerFront/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+    "_title": "moviemanager - Find your interest!",
+    "_title_default": "moviemanager - Find your interest!"
   }
 ];
 window.g_routes = routes;

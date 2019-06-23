@@ -126,16 +126,16 @@ class Movie extends PureComponent {
                     }
                 </div>
             </div>
-            {index.newest_movies ?
+            {index.movie ?
                 <div className={styles.main}>
                     <div className={styles.head}>最近上映
                         <Icon className={styles.headIcon} type="thunderbolt"/>
                     </div>
                     <div className={styles.mainContent}>
-                        <MovieList data={index.newest_movies} loading={loading} like={this.handleLike}/>
+                        <MovieList data={index.movie} loading={loading} />
                     </div>
                 </div> : null}
-            {index.newest_comments ?
+            {index.comment ?
             <div className={styles.main}>
                 <div className={styles.head}>最新影评
                     <Icon className={styles.headIcon} type="solution"/>
@@ -152,7 +152,7 @@ class Movie extends PureComponent {
                             xl: 3,
                             xxl: 3,
                         }}
-                        dataSource={index.newest_comments}
+                        dataSource={index.comment}
                         renderItem={item => (
                             <List.Item>
                                 <Comment
@@ -164,11 +164,11 @@ class Movie extends PureComponent {
                                         </p>
 
                                     ]}
-                                    author={<a>{item.nick ? item.nick.substring(0,8): '匿名用户'}</a>}
+                                    author={<a>{item.user_name ? item.user_name.substring(0,8): '匿名用户'}</a>}
                                     avatar={
                                         <Avatar
-                                            src={item.avatarUrl}
-                                            alt={item.nick}
+                                            src={item.user_avatar_url}
+                                            alt={item.user_name}
                                         />
                                     }
                                     content={
@@ -176,14 +176,14 @@ class Movie extends PureComponent {
                                               style={{fontSize: 14}}/>
                                     }
                                     datetime={
-                                        <span>评价了 <a onClick={()=>router.push(`/movie/${item.movie_id}`)}>{(item.movie||'').substring(0,8)}</a></span>
+                                        <span>评价了 <a onClick={()=>router.push(`/movie/${item.movie_id}`)}>{(item.movie_name||'').substring(0,8)}</a></span>
                                     }
                                 /></List.Item>
                         )}
                     />
                 </div>
             </div> : null}
-            {index.newest_discussions ?
+            {index.discussion ?
                 <div className={styles.main}>
                     <div className={styles.head}>最新话题
                         <Icon className={styles.headIcon} type="number"/>
@@ -200,17 +200,17 @@ class Movie extends PureComponent {
                                 xl: 3,
                                 xxl: 3,
                             }}
-                            dataSource={index.newest_discussions}
+                            dataSource={index.discussion}
                             renderItem={item => (
                                 <List.Item>
                                     <Comment
                                         className={styles.commentItem}
                                         key={item.id}
-                                        author={<a>{item.nick ? item.nick.substring(0,8): '匿名用户'}</a>}
+                                        author={<a>{item.user_name ? item.user_name.substring(0,8): '匿名用户'}</a>}
                                         avatar={
                                             <Avatar
-                                                src={item.avatar}
-                                                alt={item.nick}
+                                                src={item.user_avatar_url}
+                                                alt={item.user_name}
                                             />
                                         }
                                         content={
@@ -219,7 +219,7 @@ class Movie extends PureComponent {
                                             </p>
                                         }
                                         datetime={
-                                            <span>发表于 <a onClick={()=>router.push(`/forum/${item.forum}`)}>{(item.forum||'').substring(0,8)}</a></span>
+                                            <span>发表于 <a onClick={()=>router.push(`/forum/${item.forum_id}`)}>{(item.forum_name||'').substring(0,8)}</a></span>
                                         }
                                     /></List.Item>
                             )}

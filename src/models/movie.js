@@ -1,4 +1,4 @@
-import {getMovie, likeMovie, listComment, listLikedMovie, listMovie, postComment} from '../services/network';
+import {getMovie, likeMovie, dislikeMovie, listComment, listLikedMovie, listMovie, postComment} from '../services/network';
 
 export default {
     namespace: 'movie',
@@ -31,7 +31,15 @@ export default {
                 type: 'changeLoading',
                 payload: true,
             });
-            const result = yield call(likeMovie, payload);
+            if (payload.like)
+                yield call(dislikeMovie, {id: payload.id});
+            else
+                yield call(likeMovie, {id: payload.id});
+            const {id} = yield select(state => state.movie.current);
+            if (payload.refreshLike)
+                yield put({type: 'fetchLiked'});
+            else
+                yield put({type: 'fetchCurrentWithoutRefresh', payload: id});
             yield put({
                 type: 'changeLoading',
                 payload: false,
@@ -82,9 +90,10 @@ export default {
                 payload: true,
             });
             const result = yield call(listLikedMovie, payload);
+            const data = Array.isArray(result.delete_state) ? result.delete_state : [];
             yield put({
                 type: 'queryList',
-                payload: {...result, data: Array.isArray(result.data) ? result.data : []},
+                payload: {data, page:1,totalPage:1,count: data.length},
             });
             yield put({
                 type: 'changeLoading',
@@ -105,7 +114,7 @@ export default {
             });
             yield put({
                 type: 'queryComment',
-                payload: {...result, data: Array.isArray(result.data) ? result.data : []},
+                payload: result.data,
             });
             yield put({
                 type: 'changeLoading',
@@ -118,9 +127,31 @@ export default {
                 type: 'changeLoading',
                 payload: true,
             });
+                yield put({
+                    type: 'queryCurrent',
+                    payload: {},
+                });
+            let data = yield call(getMovie, {
+                id,
+            });
             yield put({
                 type: 'queryCurrent',
-                payload: {},
+                payload: data,
+            });
+            yield put({
+                type: 'fetchComment',
+                payload: {page: 1, pageSize: 12, movie_id: id},
+            });
+            yield put({
+                type: 'changeLoading',
+                payload: false,
+            });
+        },
+        * fetchCurrentWithoutRefresh({payload}, {call, put}) {
+            const id = payload;
+            yield put({
+                type: 'changeLoading',
+                payload: true,
             });
             let data = yield call(getMovie, {
                 id,
@@ -134,6 +165,7 @@ export default {
                 payload: false,
             });
         },
+
 
     },
 
@@ -155,7 +187,7 @@ export default {
             return {
                 ...state,
                 current: action.payload,
-                comments: action.payload.comments,
+                // comments: action.payload.comments,
             };
         },
         queryComment(state, action) {

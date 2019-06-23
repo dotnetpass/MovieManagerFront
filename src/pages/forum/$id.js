@@ -42,7 +42,6 @@ class Forum extends PureComponent {
         this.setState({
             editInputValue: {
                 forum_id: this.props.forum.data.id,
-                score: 5,
                 content: ''
             }
         });
@@ -97,7 +96,8 @@ class Forum extends PureComponent {
         this.props.dispatch({
             type: 'forum/like',
             payload: {
-                id: this.props.forum.data.id
+                id: this.props.forum.data.id,
+                like: this.props.forum.data.like,
             }
         });
     };
@@ -131,7 +131,7 @@ class Forum extends PureComponent {
         const {loading} = forum;
 
         const loadMore =
-            forum.page < forum.totalPage ? (
+            forum.discussions && forum.page < forum.totalPage ? (
                 loading ? <Spin style={{marginLeft: 330, marginTop: 12}}/> :
                     <div style={{
                         textAlign: 'center',
@@ -147,7 +147,7 @@ class Forum extends PureComponent {
             loading={loading}
             loadMore={loadMore}
             itemLayout="horizontal"
-            dataSource={forum.discussions}
+            dataSource={forum.discussions || []}
             renderItem={item => (
                 <Comment
                     className={styles.comment}
@@ -155,7 +155,7 @@ class Forum extends PureComponent {
                     author={<a>{item.nick || '匿名用户'}</a>}
                     avatar={
                         <Avatar
-                            src={item.avatar}
+                            src={item.avatar_url}
                             alt={item.nick}
                         />
                     }
@@ -197,7 +197,7 @@ class Forum extends PureComponent {
                                     subTitle={`共找到 ${forum.count || 0} 条讨论`}/>
                         {user?
                         <div className={styles.funcbarRight}>
-                            <Icon className={styles.func} onClick={this.handleLike} type="heart"/>
+                            <Icon className={styles.func} onClick={this.handleLike} type="heart" theme={forum.data.like?'filled':'outlined'}/>
                             <Icon className={styles.func} onClick={this.handleEditStart} type="edit"/>
                         </div>:null}
 

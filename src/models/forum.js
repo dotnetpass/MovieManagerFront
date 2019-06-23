@@ -1,5 +1,6 @@
 import {
     createForum,
+    dislikeForum,
     getForum,
     getForumList,
     likeForum,
@@ -29,7 +30,15 @@ export default {
                 type: 'changeLoading',
                 payload: true,
             });
-            const result = yield call(likeForum, payload);
+            if (payload.like)
+                yield call(dislikeForum, {id: payload.id});
+            else
+                yield call(likeForum, {id: payload.id});
+            const {id} = yield select(state => state.forum.data);
+            if (payload.refreshLike)
+                yield put({type: 'fetchLiked'});
+            else
+                yield put({type: 'fetch', payload: {id}});
             yield put({
                 type: 'changeLoading',
                 payload: false,
@@ -55,8 +64,9 @@ export default {
             const result = yield call(getForum, payload);
             yield put({
                 type: 'query',
-                payload: {...result, ...payload},
+                payload: {...result, ...payload, id: payload.id},
             });
+            yield put({type: 'fetchDiscussion', payload: {page: 1, pageSize: 12, forum_id: payload.id}});
             yield put({
                 type: 'changeLoading',
                 payload: false,
@@ -119,7 +129,7 @@ export default {
                 forum_id: payload && payload.forum_id ? payload.forum_id : data.id,
             });
             yield put({
-                type: 'query',
+                type: 'queryDiscussion',
                 payload: result,
             });
             yield put({
@@ -134,6 +144,14 @@ export default {
             return {
                 ...state,
                 data: action.payload,
+            }
+        },
+        queryDiscussion(state, action) {
+            return {
+                ...state,
+                ...action.payload,
+                data: state.data,
+                discussions: action.payload.data,
             }
         },
         queryList(state, action) {

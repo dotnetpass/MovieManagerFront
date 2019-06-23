@@ -6,7 +6,8 @@ export default {
                 antd: true,
                 dva: {
                     immer: true
-                }
+                },
+                title: 'moviemanager - Find your interest!'
             }
         ],
     ],

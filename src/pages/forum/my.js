@@ -22,11 +22,14 @@ class Movie extends PureComponent {
     }
 
 
-    handleLike = (id) => {
+    handleLike = (e,id) => {
+        e.stopPropagation();
         this.props.dispatch({
             type: 'forum/like',
             payload: {
-                id
+                id,
+                like: true,
+                refreshLike: true
             }
         });
     };
@@ -68,7 +71,8 @@ class Movie extends PureComponent {
                     dataSource={forum.list}
                     renderItem={item => (
                         <List.Item>
-                            <Card>{item.name}&nbsp;<a onClick={() => this.handleLike(item.id)}><Icon type="delete"/></a></Card>
+                            <Card hoverable onClick={()=>router.push('/forum/'+item.id)}>
+                                {item.name}&nbsp;<a onClick={(e) => this.handleLike(e,item.id)}><Icon type="delete"/></a></Card>
                         </List.Item>
                     )}
                 />,

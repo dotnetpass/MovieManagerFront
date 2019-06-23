@@ -29,26 +29,25 @@ export async function listMovie(query) {
 }
 
 export async function listLikedMovie(query) {
-    return request(`${apiUrl}/movie/like`, {
+    return request(`${newApiUrl}/usermovie/get/favorite`, {
         query,
     });
 }
 
 export async function likeMovie(params) {
-    return request(`${apiUrl}/movie/like`, {
-        method: 'POST',
-        body: params,
-    });
+    return request(`${newApiUrl}/usermovie/add/${params.id}`, {});
+}
+
+export async function dislikeMovie(params) {
+    return request(`${newApiUrl}/usermovie/delete/${params.id}`, {method: 'DELETE'});
 }
 
 export async function listComment(query) {
-    return request(`${apiUrl}/comment`, {
-        query,
-    });
+    return request(`${newApiUrl}/comment/get/movie/${query.movie_id}/${query.page}/${query.pageSize}`, {});
 }
 
 export async function postComment(params) {
-    return request(`${apiUrl}/comment`, {
+    return request(`${newApiUrl}/comment/create`, {
         method: 'POST',
         body: params,
     });
@@ -63,24 +62,25 @@ export async function getForumList(query) {
 }
 
 export async function getIndex() {
-    return request(`${apiUrl}/index`, {});
+    return request(`${newApiUrl}/index`, {});
 }
 
 export async function listLikedForum(query) {
-    return request(`${apiUrl}/forum/like`, {
+    return request(`${newApiUrl}/userforum/get/all`, {
         query,
     });
 }
 
 export async function likeForum(params) {
-    return request(`${apiUrl}/forum/like`, {
-        method: 'POST',
-        body: params,
-    });
+    return request(`${newApiUrl}/userforum/add/${params.id}`, {});
+}
+
+export async function dislikeForum(params) {
+    return request(`${newApiUrl}/userforum/delete/${params.id}`, {method: 'DELETE'});
 }
 
 export async function createForum(params) {
-    return request(`${apiUrl}/forum`, {
+    return request(`${newApiUrl}/forum/create`, {
         method: 'POST',
         body: params,
     });
@@ -94,13 +94,11 @@ export async function updateForum(params) {
 }
 
 export async function listDiscussion(query) {
-    return request(`${apiUrl}/discussion`, {
-        query,
-    });
+    return request(`${newApiUrl}/discussion/get/forum/${query.forum_id}/${query.page}/${query.pageSize}`, {});
 }
 
 export async function postDiscussion(params) {
-    return request(`${apiUrl}/discussion`, {
+    return request(`${newApiUrl}/discussion/create`, {
         method: 'POST',
         body: params,
     });

@@ -97,7 +97,8 @@ class MoviePage extends PureComponent {
         this.props.dispatch({
             type: 'movie/like',
             payload: {
-                id: this.props.current.id
+                id: this.props.current.id,
+                like: this.props.current.like,
             }
         });
     };
@@ -128,22 +129,22 @@ class MoviePage extends PureComponent {
                     </div>
             ) : null;
 
-        const commentsBlock = comments ? <List
+        const commentsBlock = <List
             loading={loading}
             loadMore={loadMore}
             itemLayout="horizontal"
-            dataSource={comments.data}
+            dataSource={(comments && comments.data) || []}
             renderItem={item => (
                 <Comment
                     className={styles.commentItem}
                     key={item.id}
                     actions={[
-                        <Rate key="1" disabled allowHalf defaultValue={item.score / 2} style={{fontSize: 14}}/>
+                        <Rate key="1" disabled allowHalf value={item.score / 2} style={{fontSize: 14}}/>
                     ]}
                     author={<a>{item.nick || '匿名用户'}</a>}
                     avatar={
                         <Avatar
-                            src={item.avatarUrl}
+                            src={item.avatar_url}
                             alt={item.nick}
                         />
                     }
@@ -159,7 +160,7 @@ class MoviePage extends PureComponent {
                     }
                 />
             )}
-        /> : null;
+        />
 
 
         return (
@@ -196,7 +197,7 @@ class MoviePage extends PureComponent {
                             </div>
                             {user?
                             <div className={styles.funcbarRight}>
-                                <Icon className={styles.func} onClick={this.handleLike} type="heart"/>
+                                <Icon className={styles.func} onClick={this.handleLike} type="heart" theme={current.like?'filled':'outlined'}/>
                                 <Icon className={styles.func} onClick={this.handleEditStart} type="edit"/>
                             </div>:null}
                         </div>
@@ -208,7 +209,7 @@ class MoviePage extends PureComponent {
                             <Icon className={styles.headIcon} type="container"/>
                         </div>
                         <div className={styles.comments}>
-                            {comments?commentsBlock:null}
+                            {commentsBlock}
                         </div>
                     </div>
                     <div className={styles.right}>
