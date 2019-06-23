@@ -1,4 +1,12 @@
-import {getMovie, likeMovie, dislikeMovie, listComment, listLikedMovie, listMovie, postComment} from '../services/network';
+import {
+    dislikeMovie,
+    getMovie,
+    likeMovie,
+    listComment,
+    listLikedMovie,
+    listMovie,
+    postComment
+} from '../services/network';
 
 export default {
     namespace: 'movie',
@@ -93,7 +101,7 @@ export default {
             const data = Array.isArray(result.delete_state) ? result.delete_state : [];
             yield put({
                 type: 'queryList',
-                payload: {data, page:1,totalPage:1,count: data.length},
+                payload: {data, page: 1, totalPage: 1, count: data.length},
             });
             yield put({
                 type: 'changeLoading',
@@ -127,10 +135,14 @@ export default {
                 type: 'changeLoading',
                 payload: true,
             });
-                yield put({
-                    type: 'queryCurrent',
-                    payload: {},
-                });
+            yield put({
+                type: 'queryCurrent',
+                payload: {},
+            });
+            yield put({
+                type: 'queryComment',
+                payload: {page:1, data: []},
+            });
             let data = yield call(getMovie, {
                 id,
             });

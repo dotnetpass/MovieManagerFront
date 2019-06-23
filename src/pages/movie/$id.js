@@ -60,9 +60,9 @@ class MoviePage extends PureComponent {
 
     handleScroll(e) {
         const top = document.documentElement.scrollTop
-        if (document.documentElement.scrollTop > 475 && !this.state.isShowHead)
+        if (document.documentElement.scrollTop > 495 && !this.state.isShowHead)
             this.setState({isShowHead: true})
-        else if (document.documentElement.scrollTop < 475 && this.state.isShowHead)
+        else if (document.documentElement.scrollTop < 495 && this.state.isShowHead)
             this.setState({isShowHead: false})
     }
 
@@ -191,6 +191,7 @@ class MoviePage extends PureComponent {
                         </div>
                         <div className={styles.funcbar}>
                             <div className={styles.score}>
+                                <span className={styles.begin}>观众评分</span>
                                 <Rate allowHalf className={styles.scores} defaultValue={Math.floor(current.score) / 2} disabled/>
                                 <span className={styles.scoreNum}>{current.score || 0}</span>&nbsp;&nbsp;/10
                                 <span className={styles.scoreCount}>{(current.score_count || 0)} 人参与评分</span>
@@ -200,6 +201,13 @@ class MoviePage extends PureComponent {
                                 <Icon className={styles.func} onClick={this.handleLike} type="heart" theme={current.like?'filled':'outlined'}/>
                                 <Icon className={styles.func} onClick={this.handleEditStart} type="edit"/>
                             </div>:null}
+                        </div>
+                        <div className={styles.funcbar}>
+                            <div className={styles.score}>
+                                <span className={styles.begin}>影评评分</span>
+                                <Rate allowHalf className={styles.scores} defaultValue={Math.floor(current.average_score) / 2} disabled/>
+                                <span className={styles.scoreNum}>{current.average_score || 0}</span>&nbsp;&nbsp;/10
+                            </div>
                         </div>
                     </div>
                 </div>
