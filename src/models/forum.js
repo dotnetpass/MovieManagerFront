@@ -6,7 +6,7 @@ import {
     listDiscussion,
     listLikedForum,
     postDiscussion
-} from '../services/api';
+} from '../services/network';
 import router from 'umi/router';
 
 export default {

@@ -1,4 +1,4 @@
-import {flogin, fregister, flogout} from '../services/api';
+import {flogin, fregister, flogout} from '../services/network';
 import router from 'umi/router';
 
 export default {

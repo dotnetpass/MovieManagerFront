@@ -1,4 +1,4 @@
-import {getMovie, likeMovie, listComment, listLikedMovie, listMovie, postComment} from '../services/api';
+import {getMovie, likeMovie, listComment, listLikedMovie, listMovie, postComment} from '../services/network';
 
 export default {
     namespace: 'movie',

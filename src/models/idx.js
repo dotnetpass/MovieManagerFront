@@ -1,4 +1,4 @@
-import {getIndex} from '../services/api';
+import {getIndex} from '../services/network';
 import router from "umi/router";
 
 export default {
